@@ -1,5 +1,16 @@
+from datetime import datetime
 import requests
+import tweepy
+import time
+import subprocess
 
+api_key = '8DQxgcyh6aFC8DCkZXUrBmxI8'
+api_secret = 'Nxe3ZSGW33STxBJ5Rq0tF88OVWMbNXDwYCC2KCznPgSgTQjLJq'
+access_token = '1619107870234054656-vMG8756pAHPcVwy2gQGmZobluAgCWI'
+access_token_secret = 'a1Grufanwa6WwG6pnMa5NaGodtM7fXsxXDvRpvBkAO555'
+bearer_token = 'AAAAAAAAAAAAAAAAAAAAACjylQEAAAAANVRa4jevRsxiTlZ4dTeyQridFhI%3D7qZAJ31Rb2ENsDo4sAHJWi5BTvhnQEYqQoa2llQjcV4cHfeYp2'
+
+# STATION ID
 # Cangas => 10906
 # Cies Alto => 10125
 # Puerto Vigo => 14001
@@ -21,7 +32,8 @@ viento = viento * 1.94384
 racha = racha * 1.94384
 
 #Tweet format
-tweet = "Cies" + "\n" + "Wind: " + str(round(viento, 2)) + "\n" + "Dir: " + str(dir_viento) + "\n" + "Shift: " + str(round(racha,2)) + "\n" + "Shift-dir: " + str(dir_racha) + "\n" + "Tª agua: " + str(round(temperatura,2)) +"\n\n"
+tweet = " "
+tweet = tweet + "Cies" + "\n" + "Wind: " + str(round(viento, 2)) + "\n" + "Dir: " + str(dir_viento) + "\n" + "Shift: " + str(round(racha,2)) + "\n" + "Shift-dir: " + str(dir_racha) + "\n" + "Tª agua: " + str(round(temperatura,2)) +"\n\n"
 
 # Data extraction from static stations
 # First station
@@ -74,6 +86,11 @@ tweet = tweet + estacion + "\n" + "Wind: " + str(round(viento, 2)) + "\n" + "Dir
 # Buoyancy station
 # url_graph_wind_boya="http://www2.meteogalicia.gal/galego/observacion/plataformas/graficasactuais/ventoracha_h015002.jpg"
 # url_graph_direction_boya="http://www2.meteogalicia.gal/galego/observacion/plataformas/graficasactuais/dirventoracha_h015002.jpg"
-
-
 print (tweet)
+auth = tweepy.OAuthHandler(api_key, api_secret)
+auth.set_access_token(access_token, access_token_secret)
+# Create API object
+api = tweepy.API(auth)
+# Create a tweet
+api.update_status(tweet)
+
