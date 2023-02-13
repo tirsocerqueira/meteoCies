@@ -22,11 +22,11 @@ url_boya = "https://servizos.meteogalicia.gal/mgrss/observacion/ultimos10minPlat
 # Data extraction from buoyancies
 data = requests.get(url_boya).json()
 estacion = data['listUltimos10min'][0]['estacion']
-viento = data['listUltimos10min'][0]['listaMedidas'][7]['valor']
+viento = data['listUltimos10min'][0]['listaMedidas'][10]['valor']
 dir_viento = data['listUltimos10min'][0]['listaMedidas'][3]['valor']
 racha = data['listUltimos10min'][0]['listaMedidas'][4]['valor']
 dir_racha = data['listUltimos10min'][0]['listaMedidas'][2]['valor']
-temperatura = data['listUltimos10min'][0]['listaMedidas'][6]['valor']
+temperatura = data['listUltimos10min'][0]['listaMedidas'][9]['valor']
 # Data convertion m/s to kn
 viento = viento * 1.94384
 racha = racha * 1.94384
