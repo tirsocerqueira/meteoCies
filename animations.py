@@ -42,8 +42,8 @@ now = datetime.now()
 minutos = [0,15,30,45]
 # URL changes depending on the day, month and year
 # It must be changed the str(20)
-nearest_hour, nearest_minute = nearest_quarter_minute(now.hour,now.minute)
-starting_hour = nearest_hour-2
+nearest_hour, nearest_minute = nearest_quarter_minute(now.hour-1,now.minute)
+starting_hour = nearest_hour-4
 hour=starting_hour
 minute= nearest_minute
 for hour in range(hour,nearest_hour):
@@ -51,6 +51,7 @@ for hour in range(hour,nearest_hour):
         url = "https://www.meteogalicia.gal/datosred/satelite/ULTIMOS_30_DIAS/IMAGENES/Monthly/Day%"+ str(20)+now.strftime('%d') +"/WEB_HRVIBERIA_"+"["+ "{:02d}".format(hour) +"-" + "{:02d}".format(minute) +"]"+".jpg"
         #VIDEO FILE FOR LAST HOUR NUBOSITY
         # Download of the file
+        print(hour,minute)
         name=str(now.day)+str(now.month)+str(now.year)+"lastHour"+"{:02d}".format(hour) + "{:02d}".format(minute) + ".jpg"
         try:
             print("Downloading starts...\n")
