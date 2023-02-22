@@ -1,8 +1,5 @@
-from datetime import datetime
 import requests
 import tweepy
-import time
-import subprocess
 
 api_key = '8DQxgcyh6aFC8DCkZXUrBmxI8'
 api_secret = 'Nxe3ZSGW33STxBJ5Rq0tF88OVWMbNXDwYCC2KCznPgSgTQjLJq'
@@ -82,15 +79,12 @@ tweet = tweet + estacion + "\n" + "Wind: " + str(round(viento, 2)) + "\n" + "Dir
     dir_viento) + "\n" + "Shift: " + str(round(racha, 2)) + "\n" + "Shift-dir: " + str(
     dir_racha) + "\n\n"
 
-# Graphic data
-# Buoyancy station
-# url_graph_wind_boya="http://www2.meteogalicia.gal/galego/observacion/plataformas/graficasactuais/ventoracha_h015002.jpg"
-# url_graph_direction_boya="http://www2.meteogalicia.gal/galego/observacion/plataformas/graficasactuais/dirventoracha_h015002.jpg"
-print (tweet)
+
 auth = tweepy.OAuthHandler(api_key, api_secret)
 auth.set_access_token(access_token, access_token_secret)
 # Create API object
 api = tweepy.API(auth)
 # Create a tweet
 api.update_status(tweet)
+
 

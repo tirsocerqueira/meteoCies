@@ -1,9 +1,5 @@
-from datetime import datetime
 import requests
 import tweepy
-import time
-import subprocess
-import urllib.request
 
 api_key = '8DQxgcyh6aFC8DCkZXUrBmxI8'
 api_secret = 'Nxe3ZSGW33STxBJ5Rq0tF88OVWMbNXDwYCC2KCznPgSgTQjLJq'
@@ -16,23 +12,18 @@ bearer_token = 'AAAAAAAAAAAAAAAAAAAAACjylQEAAAAANVRa4jevRsxiTlZ4dTeyQridFhI%3D7q
 tides_info = "https://servizos.meteogalicia.gal/apiv4/getTidesInfo?coords=-8.80,42.19&API_KEY=8yH8K2ot78sls8LJ7V1fLXNf31x370Y730V360Dru8036Uk234yDD25a3Pk9f94v"
 
 # Data extraction from buoyancies
-#data = requests.get(url_boya).json()
-#print (data)
-#auth = tweepy.OAuthHandler(api_key, api_secret)
-#auth.set_access_token(access_token, access_token_secret)
+data = requests.get(tides_info).json()
+all_tides = data['features'][0]['properties']['days'][0]['variables'][0]
+tweet = "TABLA DE MAREAS "+ all_tides['summary'][0]['timeInstant'][:10] + "\n" + all_tides['summary'][0]['timeInstant'][11:-6] + " : " + all_tides['summary'][0]['state'] + "\n" +\
+      all_tides['summary'][1]['timeInstant'][11:-6] + " : " + all_tides['summary'][1]['state'] + "\n" +\
+      all_tides['summary'][2]['timeInstant'][11:-6] + " : " + all_tides['summary'][2]['state'] + "\n" +\
+      all_tides['summary'][3]['timeInstant'][11:-6] + " : " + all_tides['summary'][3]['state'] + "\n"
+
+
+
+auth = tweepy.OAuthHandler(api_key, api_secret)
+auth.set_access_token(access_token, access_token_secret)
 # Create API object
-#api = tweepy.API(auth)
+api = tweepy.API(auth)
 # Create a tweet
-#api.update_status(tweet)
-
-url = "https://www.meteogalicia.gal/datosred/satelite/ULTIMOS_30_DIAS/VIDEOS/20230213Geocolor24h.mp4"
-
-
-
-name="prueba"+".mp4"
-try:
-    print("Downloading starts...\n")
-    urllib.request.urlretrieve(url, name)
-    print("Download completed..!!")
-except Exception as e:
-    print(e)
+api.update_status(tweet)

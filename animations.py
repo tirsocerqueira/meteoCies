@@ -48,7 +48,7 @@ hour=starting_hour
 minute= nearest_minute
 for hour in range(hour,nearest_hour):
     for minute in minutos:
-        url = "https://www.meteogalicia.gal/datosred/satelite/ULTIMOS_30_DIAS/IMAGENES/Monthly/Day%"+ str(20)+now.strftime('%m') +"/WEB_HRVIBERIA_"+"["+ "{:02d}".format(hour) +"-" + "{:02d}".format(minute) +"]"+".jpg"
+        url = "https://www.meteogalicia.gal/datosred/satelite/ULTIMOS_30_DIAS/IMAGENES/Monthly/Day%"+ str(20)+now.strftime('%d') +"/WEB_HRVIBERIA_"+"["+ "{:02d}".format(hour) +"-" + "{:02d}".format(minute) +"]"+".jpg"
         #VIDEO FILE FOR LAST HOUR NUBOSITY
         # Download of the file
         name=str(now.day)+str(now.month)+str(now.year)+"lastHour"+"{:02d}".format(hour) + "{:02d}".format(minute) + ".jpg"
@@ -63,7 +63,7 @@ for hour in range(hour,nearest_hour):
             centro_y = 350
 
             # establecer el factor de zoom
-            factor_zoom = 2
+            factor_zoom = 3
 
             # obtener el tamaño original de la imagen
             ancho_original, alto_original = imagen.size
