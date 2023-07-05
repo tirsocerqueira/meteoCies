@@ -1,11 +1,14 @@
 import requests
 import tweepy
 
-api_key = '8DQxgcyh6aFC8DCkZXUrBmxI8'
-api_secret = 'Nxe3ZSGW33STxBJ5Rq0tF88OVWMbNXDwYCC2KCznPgSgTQjLJq'
-access_token = '1619107870234054656-vMG8756pAHPcVwy2gQGmZobluAgCWI'
-access_token_secret = 'a1Grufanwa6WwG6pnMa5NaGodtM7fXsxXDvRpvBkAO555'
-bearer_token = 'AAAAAAAAAAAAAAAAAAAAACjylQEAAAAANVRa4jevRsxiTlZ4dTeyQridFhI%3D7qZAJ31Rb2ENsDo4sAHJWi5BTvhnQEYqQoa2llQjcV4cHfeYp2'
+api_key = 'sx2k9Hf6CGrqeiAGkTSF2N5fG'
+api_secret = '2rdovbtb3m4Gwd2aZlwdfWtkfOrZLYzjzXFYIj6VLoTVQDJ136'
+access_token = '1619107870234054656-LYlIPmGVTUpTo5Oqsb6kBYQrZHdNwz'
+access_token_secret = 'wdE57hblXOumLXD5UUsDflHewqUgQFetxB5tBgLfwlduI'
+bearer_token = 'AAAAAAAAAAAAAAAAAAAAAP57ogEAAAAAMvsnLe8L36qsN1cpDdfGuKiYv0w%3DesKHhH238WEUBWniDBOHyzGaUJbFliH5q78Uz8BatsoBqbeyOi'
+
+
+
 
 # STATION ID
 # Cangas => 10906
@@ -85,6 +88,7 @@ auth.set_access_token(access_token, access_token_secret)
 # Create API object
 api = tweepy.API(auth)
 # Create a tweet
-api.update_status(tweet)
-
+#api.create_tweet(tweet)
+client=tweepy.Client(bearer_token=bearer_token,consumer_key=api_key,consumer_secret=api_secret,access_token=access_token,access_token_secret=access_token_secret)
+client.create_tweet(text=tweet)
 

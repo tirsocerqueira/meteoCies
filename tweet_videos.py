@@ -2,11 +2,11 @@ from datetime import datetime
 import tweepy
 import urllib.request
 
-api_key = '8DQxgcyh6aFC8DCkZXUrBmxI8'
-api_secret = 'Nxe3ZSGW33STxBJ5Rq0tF88OVWMbNXDwYCC2KCznPgSgTQjLJq'
-access_token = '1619107870234054656-vMG8756pAHPcVwy2gQGmZobluAgCWI'
-access_token_secret = 'a1Grufanwa6WwG6pnMa5NaGodtM7fXsxXDvRpvBkAO555'
-bearer_token = 'AAAAAAAAAAAAAAAAAAAAACjylQEAAAAANVRa4jevRsxiTlZ4dTeyQridFhI%3D7qZAJ31Rb2ENsDo4sAHJWi5BTvhnQEYqQoa2llQjcV4cHfeYp2'
+api_key = 'sx2k9Hf6CGrqeiAGkTSF2N5fG'
+api_secret = '2rdovbtb3m4Gwd2aZlwdfWtkfOrZLYzjzXFYIj6VLoTVQDJ136'
+access_token = '1619107870234054656-LYlIPmGVTUpTo5Oqsb6kBYQrZHdNwz'
+access_token_secret = 'wdE57hblXOumLXD5UUsDflHewqUgQFetxB5tBgLfwlduI'
+bearer_token = 'AAAAAAAAAAAAAAAAAAAAAP57ogEAAAAAMvsnLe8L36qsN1cpDdfGuKiYv0w%3DesKHhH238WEUBWniDBOHyzGaUJbFliH5q78Uz8BatsoBqbeyOi'
 
 # Set local day
 now = datetime.now()
@@ -31,6 +31,9 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 # Uploading the video
-path="/Users/tirsocerqueira/PycharmProjects/pythonProject/"+name
+path="/Users/tirsocerqueira/Documents/Proyectos/meteoCies/"+name
 upload_result = api.media_upload(path,chunked=True, media_category="tweet_video")
-api.update_status(status="24 últimas horas de satélite para el día " + now.strftime('%d') + "/" + now.strftime('%m') +"/" + str(now.year) , media_ids=[upload_result.media_id_string])
+#api.update_status(status="24 últimas horas de satélite para el día " + now.strftime('%d') + "/" + now.strftime('%m') +"/" + str(now.year) , media_ids=[upload_result.media_id_string])
+
+client=tweepy.Client(bearer_token=bearer_token,consumer_key=api_key,consumer_secret=api_secret,access_token=access_token,access_token_secret=access_token_secret)
+client.create_tweet(text="24 últimas horas de satélite para el día " + now.strftime('%d') + "/" + now.strftime('%m') +"/" + str(now.year), media_ids=[upload_result.media_id_string])
